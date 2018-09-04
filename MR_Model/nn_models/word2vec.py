@@ -84,10 +84,8 @@ class Word2Vec(object):
             initer = tf.global_variables_initializer()
             saver = tf.train.Saver()
         with tf.Session(graph=self.model) as sess:
-            print 1
             initer.run()
             cost = self.model.get_tensor_by_name('cost:0')
-            print cost
             opt = self.model.get_operation_by_name('opt')
             tot_loss = 0
             iterations = 0
@@ -108,6 +106,7 @@ class Word2Vec(object):
         :param batch_size:
         :param window_size:
         :return:
+        Todo:词删除
         '''
         with open(self.corpus) as fin:
             batch_x, batch_y = [], []
@@ -129,6 +128,7 @@ class Word2Vec(object):
         :param meta_path:
         :param model_dir:
         :return:
+        Todo:test
         '''
         with tf.Session() as sess:
             loader = tf.train.import_meta_graph(meta_path)
